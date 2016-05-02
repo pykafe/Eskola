@@ -1,0 +1,20 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>Eskola</title>
+    </head>
+    <body>
+
+        <eskola></eskola>
+
+        <script src="{% static 'eskola.tag' %}" type="riot/tag"></script>
+        <script src="{% static 'riot/riot+compiler.min.js' %}"></script>
+        <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+
+        <script>
+            riot.mount('eskola')
+        </script>
+
+    </body>
+</html>
