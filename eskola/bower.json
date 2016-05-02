@@ -1,0 +1,22 @@
+{
+  "name": "eskola",
+  "homepage": "https://github.com/pykafe/Eskola",
+  "authors": [
+    "ony <dejesushonorio03@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "riot": "^2.3.18"
+  }
+}
