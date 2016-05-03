@@ -2,8 +2,9 @@
     <h1>Hello World!</h1>
     <ul>
         <li each= {materias}>
-           <div> { name } </div>
-           <div> { description } </div>
+            <div> { name } </div>
+            <div> { description } </div>
+            <button onclick={ delete }>X</button>
         </li>
     </ul>
     
@@ -41,4 +42,16 @@
         }
     }
 
+    delete(e){
+                // delete the todo
+                $.ajax(e.item.url, {
+                    method: 'DELETE',
+                    success: function(data){
+                        alert('deleted')
+                    var position_of_item = self.materias.indexOf(e.item)
+                    self.materias.splice(position_of_item, 1)
+                    self.update()
+                    }
+                })
+            }
 </materia>
