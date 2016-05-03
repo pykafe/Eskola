@@ -1,6 +1,6 @@
 <eskola>
 
-    <h3>Hello World</h3>
+    <h2>Hello World!</h2>
 
     <div each={ materias }>
         { name } { description }
@@ -19,7 +19,7 @@
     </div>
 
 
-    <form onsubmit={ add }>
+    <form onsubmit={ add } if={ adding_item }>
         Name:
         <input name="input_name">
         Description:
@@ -29,6 +29,7 @@
 
         
     var self = this
+    self.adding_item = true
     self.materias = []
     console.log(self)
 
@@ -66,13 +67,15 @@
    }
 
    edit(e){
+       self.adding_item = false
        self.editing_item = e.item
        self.edit_name.value = e.item.name
        self.edit_description.value = e.item.description
    }
 
    stop_edit(e){
-       self.editing_item = false
+        self.editing_item = false
+        self.adding_item = true
    }
 
    edit_save(e){
@@ -82,8 +85,9 @@
            method: 'PATCH',
            data: self.editing_item,
            success: function(data){
-               self.editing_item = false
-               self.update()
+                self.editing_item = false
+                self.adding_item = true
+                self.update()
            }
        })
    }
