@@ -8,14 +8,19 @@
     </div>
 
     <div if={ editing_item }>
+        Name:
         <input name="edit_name">
-        <input name="edit_description">
+        Description:
+        <textarea name="edit_description"></textarea>
         <button onclick={ edit_save } >PUT</button>
+        <button onclick={ stop_edit } >Stop</button>
     </div>
 
     <form onsubmit={ add }>
+        Name:
         <input name="input_name" onkeyup={ edit_key }>
-        <input name="input_description" onkeyup={ edit_key }>
+        Description:
+        <textarea name="input_description" onkeyup={ edit_key }></textarea>
         <button disabled={ !text }>Add # { materias.length + 1 }</button>
     </form>
         
@@ -65,11 +70,15 @@
        self.edit_description.value = e.item.description
    }
 
+   stop_edit(e){
+       self.editing_item = false
+   }
+
    edit_save(e){
        self.editing_item.name = self.edit_name.value
        self.editing_item.description = self.edit_description.value
        $.ajax(self.editing_item.url, {
-           method: 'PUT',
+           method: 'PATCH',
            data: self.editing_item,
            success: function(data){
                self.editing_item = false
