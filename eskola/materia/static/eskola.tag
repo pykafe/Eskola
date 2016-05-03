@@ -44,7 +44,7 @@
 
 
     add(e){
-        if(self.input_name && self.input_description){
+        if(self.input_name.value && self.input_description.value){
             var materia = ({name: self.input_name.value, description: self.input_description.value})
             $.post('/api/materias/',materia , function(data){
                 self.materias.push(data)
