@@ -1,0 +1,23 @@
+{
+  "name": "eskola",
+  "homepage": "https://github.com/pykafe/Eskola",
+  "authors": [
+    "Joanico <joanicobarros@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "riot": "^2.3.18",
+    "jquery": "^2.2.3"
+  }
+}
