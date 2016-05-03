@@ -5,6 +5,13 @@
         <title></title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+     <materia></materia>
+        <script src="{% static 'materia.tag' %}" type="riot/tag"></script>
+        <script src="{% static 'riot/riot+compiler.min.js' %}"></script>
+        <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+
+        <script>
+            riot.mount('materia')
+        </script>
     </body>
 </html>
