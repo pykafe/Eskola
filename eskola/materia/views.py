@@ -1,3 +1,4 @@
+from django.views.generic.base import TemplateView
 from models import Materia
 from rest_framework import viewsets
 from materia.serializers import MateriaSerializer
@@ -9,3 +10,7 @@ class MateriaViewSet(viewsets.ModelViewSet):
     """
     queryset = Materia.objects.all()
     serializer_class = MateriaSerializer
+
+
+class MateriaView(TemplateView):
+    template_name = 'index.html'
