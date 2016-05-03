@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from models import Materia
+from rest_framework import viewsets
+from materia.serializers import MateriaSerializer
 
-# Create your views here.
+
+class MateriaViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Materia.objects.all()
+    serializer_class = MateriaSerializer
