@@ -14,17 +14,17 @@
         <input name="edit_name">
         Description:
         <textarea name="edit_description"></textarea>
-        <button onclick={ edit_save } >PUT</button>
+        <button onclick={ edit_save }>PUT</button>
         <button onclick={ stop_edit } >Stop</button>
     </div>
 
 
     <form onsubmit={ add }>
         Name:
-        <input name="input_name" onkeyup={ edit_key }>
+        <input name="input_name">
         Description:
-        <textarea name="input_description" onkeyup={ edit_key }></textarea>
-        <button disabled={ !text }>Add # { materias.length + 1 }</button>
+        <textarea name="input_description"></textarea>
+        <button>Add # { materias.length + 1 }</button>
     </form>
 
         
@@ -41,9 +41,6 @@
         })
     })
 
-    edit_key(e){
-        self.text = e.target.value
-    }
 
     add(e){
         if(self.input_name && self.input_description){
