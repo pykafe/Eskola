@@ -3,7 +3,14 @@
 
     <div each={ materias }>
         { name } { description }
-        <button onclick={ parent.delete } >DELETE</button>
+        <button onclick={ delete } >DELETE</button>
+        <button onclick={ edit } >Edit</button>
+    </div>
+
+    <div if={ editing_item }>
+        <input name="edit_name">
+        <input name="edit_description">
+        <button onclick={ edit_save } >PUT</button>
     </div>
 
     <form onsubmit={ add }>
@@ -12,7 +19,6 @@
         <button disabled={ !text }>Add # { materias.length + 1 }</button>
     </form>
         
-
     var self = this
     self.materias = []
     console.log(self)
@@ -53,5 +59,23 @@
        })
    }
 
+   edit(e){
+       self.editing_item = e.item
+       self.edit_name.value = e.item.name
+       self.edit_description.value = e.item.description
+   }
+
+   edit_save(e){
+       self.editing_item.name = self.edit_name.value
+       self.editing_item.description = self.edit_description.value
+       $.ajax(self.editing_item.url, {
+           method: 'PUT',
+           data: self.editing_item,
+           success: function(data){
+               self.editing_item = false
+               self.update()
+           }
+       })
+   }
 
 </eskola>
