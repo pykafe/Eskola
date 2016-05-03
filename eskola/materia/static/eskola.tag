@@ -1,4 +1,5 @@
 <eskola>
+
     <h3>Hello World</h3>
 
     <div each={ materias }>
@@ -6,6 +7,7 @@
         <button onclick={ delete } >DELETE</button>
         <button onclick={ edit } >Edit</button>
     </div>
+
 
     <div if={ editing_item }>
         Name:
@@ -16,6 +18,7 @@
         <button onclick={ stop_edit } >Stop</button>
     </div>
 
+
     <form onsubmit={ add }>
         Name:
         <input name="input_name" onkeyup={ edit_key }>
@@ -23,6 +26,7 @@
         <textarea name="input_description" onkeyup={ edit_key }></textarea>
         <button disabled={ !text }>Add # { materias.length + 1 }</button>
     </form>
+
         
     var self = this
     self.materias = []
@@ -45,7 +49,7 @@
         if(self.input_name && self.input_description){
             var materia = ({name: self.input_name.value, description: self.input_description.value})
             $.post('/api/materias/',materia , function(data){
-                self.materias.push(materia)
+                self.materias.push(data)
                 console.log(materia)
                 self.input_name.value = self.input_description.value = ''
                 self.update()
@@ -56,7 +60,7 @@
    delete(event){
        $.ajax(event.item.url, {
            method : 'DELETE',
-           success: function(materia){
+           success: function(data){
                 var remove_data = self.materias.indexOf(event.item)
                 self.materias.splice(remove_data, 1)
                 self.update()
