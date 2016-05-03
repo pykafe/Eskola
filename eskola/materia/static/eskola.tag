@@ -3,7 +3,7 @@
 
     <div each={ materias }>
         { name } { description }
-        <button onclick={ delete } >DELETE</button>
+        <button onclick={ parent.delete } >DELETE</button>
     </div>
 
     <form onsubmit={ add }>
@@ -42,10 +42,13 @@
        }
    }
 
-   delete(e){
-       $.ajax(e.item.url, {
+   delete(event){
+       $.ajax(event.item.url, {
            method : 'DELETE',
            success: function(materia){
+                var remove_data = self.materias.indexOf(event.item)
+                self.materias.splice(remove_data, 1)
+                self.update()
            }
        })
    }
