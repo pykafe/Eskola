@@ -57,7 +57,7 @@
 
    delete(event){
        $.ajax(event.item.url, {
-           method : 'DELETE',
+           type : 'DELETE',
            success: function(data){
                 var remove_data = self.materias.indexOf(event.item)
                 self.materias.splice(remove_data, 1)
