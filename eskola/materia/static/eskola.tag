@@ -38,6 +38,7 @@
             self.materias = data.results
             console.log(data)
             self.update()
+            self.save()
         console.log(self)
         })
     })
@@ -45,12 +46,15 @@
 
     add(e){
         if(self.input_name.value && self.input_description.value){
-            var materia = ({name: self.input_name.value, description: self.input_description.value})
+            var materia = ({name: self.input_name.value,
+                        description: self.input_description.value})
+
             $.post('/api/materias/',materia , function(data){
                 self.materias.push(data)
                 console.log(materia)
                 self.input_name.value = self.input_description.value = ''
                 self.update()
+                self.save()
            })
        }
    }
@@ -59,9 +63,11 @@
        $.ajax(event.item.url, {
            type : 'DELETE',
            success: function(data){
+
                 var remove_data = self.materias.indexOf(event.item)
                 self.materias.splice(remove_data, 1)
                 self.update()
+                self.save()
            }
        })
    }
@@ -81,15 +87,40 @@
    edit_save(e){
        self.editing_item.name = self.edit_name.value
        self.editing_item.description = self.edit_description.value
+
        $.ajax(self.editing_item.url, {
            method: 'PATCH',
            data: self.editing_item,
            success: function(data){
+
                 self.editing_item = false
                 self.adding_item = true
                 self.update()
+                self.save()
            }
        })
    }
+
+   Lawnchair(function(){
+       this.get('materias', function(materias){
+           if(materias)
+            {
+                self.materias = materias.input_name = materias.input_description = materias.edit_name = materias.edit_description
+            }else{
+                self.materias = []
+            }
+        })
+   })
+
+   save() {
+       Lawnchair(function(){
+            this.save({key:'materias', 
+                input_name:self.materias,
+                input_description:self.materias, 
+                edit_name:self.materias, 
+                edit_description:self.materias})
+       })
+   }
+
 
 </eskola>
