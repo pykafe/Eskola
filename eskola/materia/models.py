@@ -10,4 +10,4 @@ class Materia(models.Model):
     description = models.TextField(max_length=1000)
 
     def __str__(self):
-        return '%s' % self.name, self.description
+        return '%s' % self.name
