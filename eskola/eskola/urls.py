@@ -20,7 +20,7 @@ from rest_framework import routers
 from materia import views
 
 router = routers.DefaultRouter()
-router.register(r'materias', views.MateriaViewSet)
+router.register(r'materia_list', views.MateriaViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
